@@ -11,7 +11,9 @@
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
       perSystem = { config, pkgs, system, ... }: {
         packages = {
-          default = pkgs.callPackage ./package.nix { };
+          minisha256sum = pkgs.callPackage ./package.nix { };
+          default = config.packages.minisha256sum;
+
           static = pkgs.pkgsStatic.callPackage ./package.nix { };
           x86 = pkgs.pkgsCross.gnu64.callPackage ./package.nix { };
         };
