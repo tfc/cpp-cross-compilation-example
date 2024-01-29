@@ -5,6 +5,8 @@
 #include <sstream>
 #include <vector>
 
+#include <boost/chrono.hpp>
+
 #include <openssl/evp.h>
 
 std::optional<std::string> sha256_stream(std::istream &is,
@@ -45,8 +47,12 @@ std::optional<std::string> sha256_stream(std::istream &is,
 int main() {
   std::ios::sync_with_stdio(false);
 
+  const auto tic{boost::chrono::high_resolution_clock::now()};
   if (const auto res{sha256_stream(std::cin)}) {
-    std::cout << *res << '\n';
+    const auto toc{boost::chrono::high_resolution_clock::now()};
+    const auto ms{
+        boost::chrono::duration_cast<boost::chrono::milliseconds>(toc - tic)};
+    std::cout << *res << " " << ms << '\n';
   }
 
   return 0;

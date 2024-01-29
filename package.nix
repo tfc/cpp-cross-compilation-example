@@ -1,4 +1,4 @@
-{ stdenv, lib, cmake, openssl }:
+{ stdenv, lib, cmake, boost, openssl }:
 
 stdenv.mkDerivation {
   name = "minisha256sum";
@@ -12,5 +12,5 @@ stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ cmake ];
-  buildInputs = [ openssl ];
+  buildInputs = [ boost openssl ];
 }
