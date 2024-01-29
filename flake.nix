@@ -14,8 +14,10 @@
           minisha256sum = pkgs.callPackage ./package.nix { };
           default = config.packages.minisha256sum;
 
-          static = pkgs.pkgsStatic.callPackage ./package.nix { };
           x86 = pkgs.pkgsCross.gnu64.callPackage ./package.nix { };
+          x86-static = pkgs.pkgsCross.gnu64.pkgsStatic.callPackage ./package.nix { };
+          aarch64 = pkgs.pkgsCross.aarch64-multiplatform.callPackage ./package.nix { };
+          aarch64-static = pkgs.pkgsCross.aarch64-multiplatform.pkgsStatic.callPackage ./package.nix { };
         };
 
         devShells.default = pkgs.mkShell {
