@@ -14,6 +14,10 @@
       packages = {
         minisha256sum = pkgs.callPackage ./package.nix { };
         default = config.packages.minisha256sum;
+        clang = config.packages.minisha256sum.override {
+          stdenv = pkgs.clangStdenv;
+        };
+        static = pkgs.pkgsStatic.callPackage ./package.nix { };
 
         x86 = pkgs.pkgsCross.gnu64.callPackage ./package.nix { };
         x86-static = pkgs.pkgsCross.gnu64.pkgsStatic.callPackage ./package.nix { };
