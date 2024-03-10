@@ -24,6 +24,14 @@
       devShells = {
         inherit (config.packages) default;
         clang = config.packages.default.override { stdenv = pkgs.clangStdenv; };
+
+        another-shell = pkgs.mkShell {
+          inputsFrom = [ config.packages ];
+          buildInputs = with pkgs; [
+            pkg-config
+            python3Packages.mkdocs
+          ];
+        };
       };
 
     };
