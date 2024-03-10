@@ -39,7 +39,7 @@
             statix.enable = true;
           };
         };
-      };
+      } // config.packages;
     };
   };
 }
